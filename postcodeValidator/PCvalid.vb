@@ -27,11 +27,11 @@ Public Class PCvalid
         End If
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim TB1 As String = TextBox1.Text
+        Dim TB1 As String = UCase(TextBox1.Text.Replace(" ", ""))
         ' Format the postcode with space - no need to do this for the validator but it looks better 
-        TextBox1.Text = UCase(Strings.Left(TB1.Replace(" ", ""), TB1.Length - 3) & " " & Strings.Right(TB1, 3))
+        TextBox1.Text = Strings.Left(TB1, TB1.Length - 3) & " " & Strings.Right(TB1, 3)
 
-        If PClist.isValid(TextBox1.Text.Replace(" ", "")) Then
+        If PClist.isValid(TB1) Then
             MsgBox("Postcode is Valid")
         Else
             MsgBox("Postcode is NOT Valid")
